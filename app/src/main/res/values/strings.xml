@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">ParkingSpot</string>
+    <string name="title_activity_booking">BookingActivity</string>
+    <string name="book">Book</string>
+    <string name="cancle">Cancel</string>
+    <string name="Login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="booking">Book a parking</string>
+    <string-array name="places">
+        <item>Central Mall</item>
+        <item>Pheniox Mall</item>
+        <item>Garuda Mall</item>
+        <item>Arena Mall</item>
+        <item>Gopalan Mall</item>
+        <item>VR Mall</item>
+    </string-array>
+    <string-array name="status">
+        <item>10</item>
+        <item>13</item>
+        <item>30</item>
+        <item>40</item>
+        <item>0</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="labels">
+        <item>8a</item>
+        <item>9a</item>
+        <item>10a</item>
+        <item>11a</item>
+        <item>12a</item>
+        <item>1p</item>
+        <item>2p</item>
+        <item>3p</item>
+        <item>4p</item>
+        <item>5p</item>
+        <item>6p</item>
+        <item>7p</item>
+        <item>8p</item>
+        <item>9p</item>
+    </string-array>
+</resources>

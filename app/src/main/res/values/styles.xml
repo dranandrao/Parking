@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:statusBarColor">@color/blue</item>
+    </style>
+
+    <style name="NoActionbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CommonButtonStyle">
+        <!-- <item name="android:layout_width">match_parent</item>-->
+        <item name="android:layout_height">@dimen/spacing_48</item>
+        <item name="android:layout_marginTop">@dimen/spacing_24</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_16</item>
+        <item name="android:layout_marginRight">@dimen/spacing_16</item>
+        <item name="android:paddingLeft">@dimen/spacing_8</item>
+        <item name="android:paddingRight">@dimen/spacing_8</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">14dp</item>
+        <item name="elevation">@dimen/spacing_2</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CommonEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/spacing_48</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_16</item>
+        <item name="android:layout_marginRight">@dimen/spacing_16</item>
+        <item name="android:paddingLeft">@dimen/spacing_8</item>
+        <item name="android:paddingRight">@dimen/spacing_8</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+        <item name="android:background">@drawable/yes_edittext_bg</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
