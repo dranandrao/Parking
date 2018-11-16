@@ -25,6 +25,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note :"
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:layout_margin="@dimen/spacing_2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="The statistics is based of historical visits."
+                android:textAppearance="@android:style/TextAppearance.Small"
+                android:layout_margin="@dimen/spacing_2"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
