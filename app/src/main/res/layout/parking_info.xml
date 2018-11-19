@@ -14,15 +14,23 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/spacing_5"
-            android:textColor="@color/colorLabel"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/colorLabel" />
 
         <TextView
-            android:id="@+id/parking_status"
+            android:id="@+id/parking_available"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/spacing_5"
-            android:textColor="@color/colorLabel"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/colorLabel" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/spacing_5"
+            android:layout_weight="1"
+            android:textColor="@color/colorLabel" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -19,7 +19,9 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/spacing_2"
@@ -28,7 +30,8 @@
         <ListView
             android:id="@+id/parkingList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/spacing_50" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

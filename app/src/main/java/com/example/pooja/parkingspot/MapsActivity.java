@@ -187,7 +187,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             mLocationPermissionGranted = true;
-            //addMarkers();
             getDeviceLocation();
         } else {
             // Show rationale and request permission.
@@ -215,25 +214,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         LatLng Maratahalli = new LatLng(12.9592, 77.6974);
         Marker markerMaratahalli = mMap.addMarker(new MarkerOptions().position(Maratahalli)
-                .title("Parking in Maratahalli").snippet("Parking left: "));
+                .title("Parking in Maratahalli"));
         markerMaratahalli.setTag("MAR");
 
 
         LatLng Mahadevpura = new LatLng(12.9913, 77.6874);
         Marker markerMahadevpura = mMap.addMarker(new MarkerOptions().position(Mahadevpura)
-                .title("Parking in Mahadevpura").snippet("Parking left: "));
+                .title("Parking in Mahadevpura"));
         markerMahadevpura.setTag("MAH");
 
 
         LatLng karthiknagar = new LatLng(12.9703, 77.7006);
         Marker markerKarthikNagar = mMap.addMarker(new MarkerOptions().position(karthiknagar)
-                .title("Parking in Karthi Nagar").snippet("Parking left: "));
+                .title("Parking in Karthi Nagar"));
         markerKarthikNagar.setTag("KN");
 
 
         LatLng krpuram = new LatLng(13.0040, 77.6878);
         Marker markerKrPuram = mMap.addMarker(new MarkerOptions().position(krpuram)
-                .title("Parking in KR Puram").snippet("Parking left: "));
+                .title("Parking in KR Puram"));
         markerKrPuram.setTag("KRP");
 
     }

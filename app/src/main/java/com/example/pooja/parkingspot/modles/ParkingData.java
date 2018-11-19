@@ -1,8 +1,14 @@
 package com.example.pooja.parkingspot.modles;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ParkingData {
+    @SerializedName("blockId")
     String blockId;
-    String sensorId;
+    @SerializedName("parkingName")
+    String parkingName;
+    @SerializedName("price")
+    String price;
 
     public String getBlockId() {
         return blockId;
@@ -12,12 +18,21 @@ public class ParkingData {
         this.blockId = blockId;
     }
 
-    public String getSensorId() {
-        return sensorId;
+
+    public String getParkingName() {
+        return parkingName;
     }
 
-    public void setSensorId(String sensorId) {
-        this.sensorId = sensorId;
+    public void setParkingName(String parkingName) {
+        this.parkingName = parkingName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
 }
