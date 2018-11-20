@@ -1,20 +1,21 @@
 package com.example.pooja.parkingspot;
 
-import android.os.Parcelable;
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.pooja.parkingspot.RetroFitInterfaces.APIClient;
 import com.example.pooja.parkingspot.RetroFitInterfaces.APIInterface;
-import com.example.pooja.parkingspot.modles.ParkingData;
-import com.example.pooja.parkingspot.modles.SensorInfo;
 import com.example.pooja.parkingspot.util.CustomMarker;
 import com.example.pooja.parkingspot.util.CustomXAxisValueFormatter;
 import com.github.mikephil.charting.charts.BarChart;
@@ -28,10 +29,9 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.google.android.gms.tasks.Task;
 
-import java.sql.SQLNonTransientException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,7 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookingActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+public class BookingActivity extends AppCompatActivity implements OnChartValueSelectedListener, DatePickerDialog.OnDateSetListener {
     @BindView(R.id.barchart)
     BarChart barChart;
     @BindView(R.id.book_button)
@@ -51,6 +51,9 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
     Toolbar toolbar;
     @BindView(R.id.parking_name)
     TextView parkingName;
+    @BindView(R.id.parking_date)
+    ImageButton parkingDateButton;
+
     IMarker customMarker;
     IAxisValueFormatter customValueFormatter;
     private APIInterface apiInterface;
@@ -71,6 +74,14 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
         barChart.setMarker(customMarker);
 
         parkingName.setText(getIntent().getStringExtra("parkingName"));
+        parkingDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(BookingActivity.this, BookingActivity.this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
 
         //getting data from the extras.
         final String blockId = getIntent().getStringExtra("blockId");
@@ -181,7 +192,6 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
     @Override
     public void onValueSelected(Entry e, Highlight h) {
 
-
     }
 
     @Override
@@ -189,4 +199,9 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
 
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        //TODO implement refreshing of the graph.
+        //TODO book parking to that (year,month,dayOfMonth).
+    }
 }

@@ -14,13 +14,29 @@
         android:layout_margin="@dimen/spacing_5"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/parking_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/spacing_2"
             android:layout_weight="0.3"
-            android:layout_margin="@dimen/spacing_5"
-            android:textAppearance="@android:style/TextAppearance.Large"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/parking_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/spacing_5"
+                android:layout_weight="0.7"
+                android:textAppearance="@android:style/TextAppearance.Large" />
+
+            <ImageButton
+                android:id="@+id/parking_date"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/baseline_event_black_18dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -32,7 +32,7 @@
         <activity android:name=".MapsActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ParkingListActivity" />
-        <activity android:name=".BookingActivity"></activity>
+        <activity android:name=".BookingActivity" />
     </application>
 
 </manifest>
