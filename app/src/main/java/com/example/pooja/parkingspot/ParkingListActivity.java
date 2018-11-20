@@ -16,7 +16,7 @@ import android.widget.PopupWindow;
 import com.example.pooja.parkingspot.RetroFitInterfaces.APIClient;
 import com.example.pooja.parkingspot.RetroFitInterfaces.APIInterface;
 import com.example.pooja.parkingspot.adapters.CustomAdapter;
-import com.example.pooja.parkingspot.modles.ParkingData;
+import com.example.pooja.parkingspot.modles.BlockInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class ParkingListActivity extends AppCompatActivity {
     @BindView(R.id.container)
     LinearLayout linearLayout;
 
-    private ArrayList<ParkingData> arrayList;
+    private ArrayList<BlockInfo> arrayList;
     private APIInterface apiInterface;
     PopupWindow popupWindow;
 
@@ -50,23 +50,23 @@ public class ParkingListActivity extends AppCompatActivity {
         toolbar.setTitle("Choose parking");
 
 
-        String blockId = getIntent().getStringExtra("blockId");
+        final String blockId = getIntent().getStringExtra("blockId");
 
         if (String.valueOf(blockId).isEmpty()) {
             showPopUP();
         }
 
-        Call<List<ParkingData>> apiCall = apiInterface.getParkingDetails(blockId);
-        apiCall.enqueue(new Callback<List<ParkingData>>() {
+        Call<List<BlockInfo>> apiCall = apiInterface.getParkingDetails(blockId);
+        apiCall.enqueue(new Callback<List<BlockInfo>>() {
             @Override
-            public void onResponse(Call<List<ParkingData>> call, Response<List<ParkingData>> response) {
-                arrayList = (ArrayList<ParkingData>) response.body();
+            public void onResponse(Call<List<BlockInfo>> call, Response<List<BlockInfo>> response) {
+                arrayList = (ArrayList<BlockInfo>) response.body();
                 CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), R.layout.parking_info, arrayList);
                 parkingList.setAdapter(customAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<ParkingData>> call, Throwable t) {
+            public void onFailure(Call<List<BlockInfo>> call, Throwable t) {
                 showPopUP();
             }
         });
@@ -75,9 +75,10 @@ public class ParkingListActivity extends AppCompatActivity {
         parkingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ParkingData parkingData = arrayList.get(position);
+                BlockInfo blockInfo = arrayList.get(position);
                 Intent intent = new Intent(getApplicationContext(), BookingActivity.class);
-                intent.putExtra("blockId", parkingData.getBlockId());
+                intent.putExtra("blockId", blockInfo.getId());//We need only Id,not blockId
+                intent.putExtra("sensorId",blockInfo.getSensorId());
                 startActivity(intent);
             }
         });

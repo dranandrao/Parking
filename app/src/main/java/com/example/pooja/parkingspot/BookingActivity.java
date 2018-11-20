@@ -1,12 +1,19 @@
 package com.example.pooja.parkingspot;
 
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
+import com.example.pooja.parkingspot.RetroFitInterfaces.APIClient;
+import com.example.pooja.parkingspot.RetroFitInterfaces.APIInterface;
+import com.example.pooja.parkingspot.modles.ParkingData;
+import com.example.pooja.parkingspot.modles.SensorInfo;
 import com.example.pooja.parkingspot.util.CustomMarker;
 import com.example.pooja.parkingspot.util.CustomXAxisValueFormatter;
 import com.github.mikephil.charting.charts.BarChart;
@@ -20,12 +27,17 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.android.gms.tasks.Task;
 
+import java.sql.SQLNonTransientException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookingActivity extends AppCompatActivity implements OnChartValueSelectedListener {
     @BindView(R.id.barchart)
@@ -38,6 +50,8 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
     Toolbar toolbar;
     IMarker customMarker;
     IAxisValueFormatter customValueFormatter;
+    private APIInterface apiInterface;
+    final static String TAG = "BookingActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +59,18 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
         setContentView(R.layout.activity_booking);
 
         ButterKnife.bind(this);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+
         String[] labels = getResources().getStringArray(R.array.labels);
         toolbar.setTitle("Book Parking");
         customMarker = new CustomMarker(this, R.layout.marker_layout);
         customValueFormatter = new CustomXAxisValueFormatter(labels);
         barChart.setMarker(customMarker);
+
+        //getting data from the extras.
+        final String blockId = getIntent().getStringExtra("blockId");
+        final String sensorId = getIntent().getStringExtra("sensorId");
+
 
         BarData barData = getBarData();
         barChart.setData(barData);
@@ -82,6 +103,39 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
         book_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Call<Void> sensorUpdate = apiInterface.updateSensorData(sensorId, "1");
+                final Call<Void> addParkingData = apiInterface.addParkingData("1", blockId, sensorId);
+                sensorUpdate.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            addParkingData.enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    Toast.makeText(getApplicationContext(), "Parking slot booked", Toast.LENGTH_LONG).show();
+                                    Log.v(TAG, "Parking data added :" + response.message());
+                                    finish();
+                                }
+
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+                                    Log.v(TAG, " onParking data OnFailure");
+                                    t.printStackTrace();
+                                    call.cancel();
+                                }
+                            });
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Log.v(TAG, " sensorUpdate OnFailure");
+                        t.printStackTrace();
+                        call.cancel();
+                    }
+                });
+
 
             }
         });
