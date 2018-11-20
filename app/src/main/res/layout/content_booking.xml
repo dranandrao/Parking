@@ -11,40 +11,49 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/spacing_5">
+        android:layout_margin="@dimen/spacing_5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/parking_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:layout_margin="@dimen/spacing_5"
+            android:textAppearance="@android:style/TextAppearance.Large"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:layout_margin="@dimen/spacing_2">
+            android:layout_margin="@dimen/spacing_2"
+            android:layout_weight="2">
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_2"
                 android:text="Note :"
-                android:textAppearance="@android:style/TextAppearance.Small"
-                android:layout_margin="@dimen/spacing_2"/>
+                android:textAppearance="@android:style/TextAppearance.Small" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/spacing_2"
                 android:text="The statistics is based of historical visits."
-                android:textAppearance="@android:style/TextAppearance.Small"
-                android:layout_margin="@dimen/spacing_2"/>
+                android:textAppearance="@android:style/TextAppearance.Small" />
         </LinearLayout>
 
         <LinearLayout
@@ -52,9 +61,9 @@
             android:layout_height="0dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
+            android:layout_margin="@dimen/spacing_5"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/spacing_5">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"

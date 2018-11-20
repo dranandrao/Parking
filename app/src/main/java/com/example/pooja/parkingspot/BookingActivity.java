@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -48,6 +49,8 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
     Button cancel_button;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.parking_name)
+    TextView parkingName;
     IMarker customMarker;
     IAxisValueFormatter customValueFormatter;
     private APIInterface apiInterface;
@@ -59,13 +62,15 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
         setContentView(R.layout.activity_booking);
 
         ButterKnife.bind(this);
+        toolbar.setTitle("Book Parking");
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
         String[] labels = getResources().getStringArray(R.array.labels);
-        toolbar.setTitle("Book Parking");
         customMarker = new CustomMarker(this, R.layout.marker_layout);
         customValueFormatter = new CustomXAxisValueFormatter(labels);
         barChart.setMarker(customMarker);
+
+        parkingName.setText(getIntent().getStringExtra("parkingName"));
 
         //getting data from the extras.
         final String blockId = getIntent().getStringExtra("blockId");

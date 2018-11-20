@@ -78,25 +78,26 @@ public class ParkingListActivity extends AppCompatActivity {
                 BlockInfo blockInfo = arrayList.get(position);
                 Intent intent = new Intent(getApplicationContext(), BookingActivity.class);
                 intent.putExtra("blockId", blockInfo.getId());//We need only Id,not blockId
-                intent.putExtra("sensorId",blockInfo.getSensorId());
+                intent.putExtra("sensorId", blockInfo.getSensorId());
+                intent.putExtra("parkingName", blockInfo.getLocationName());
                 startActivity(intent);
             }
         });
     }
 
     private void showPopUP() {
-        LayoutInflater layoutInflater =  (LayoutInflater)ParkingListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View customView = layoutInflater.inflate(R.layout.pop_up_window,null);
-        popupWindow = new PopupWindow(customView,LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        LayoutInflater layoutInflater = (LayoutInflater) ParkingListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View customView = layoutInflater.inflate(R.layout.pop_up_window, null);
+        popupWindow = new PopupWindow(customView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         findViewById(R.id.container).post(new Runnable() {
             @Override
             public void run() {
-                popupWindow.showAtLocation(findViewById(R.id.container),Gravity.CENTER,0,0);
+                popupWindow.showAtLocation(findViewById(R.id.container), Gravity.CENTER, 0, 0);
             }
         });
 
 
-        Button tryAgain = (Button)customView.findViewById(R.id.try_again);
+        Button tryAgain = (Button) customView.findViewById(R.id.try_again);
         tryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +105,7 @@ public class ParkingListActivity extends AppCompatActivity {
             }
         });
 
-        Button cancel = (Button)customView.findViewById(R.id.cancel);
+        Button cancel = (Button) customView.findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
