@@ -30,7 +30,7 @@ public class CustomMarker extends MarkerView {
     public void refreshContent(Entry e, Highlight highlight) {
 
         BarEntry barEntry = (BarEntry) e;
-        txContent.setText(Util.format(String.valueOf(barEntry.getY()) + " $", 0, true));
+        txContent.setText(Util.format("$ " +String.valueOf(barEntry.getY()), 0, true));
 
         super.refreshContent(e, highlight);
 

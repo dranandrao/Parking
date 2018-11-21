@@ -52,7 +52,7 @@ public class CustomAdapter extends ArrayAdapter<BlockInfo> {
         }
         viewHolder.lcoation_Name.setText(Util.format("Parking name : " + blockInfo.getLocationName()));
         viewHolder.parking_available.setText(Util.format("Parking available : " + 50));
-        viewHolder.price.setText(Util.format("Price :") + blockInfo.getPrice() + "$ / hr");
+        viewHolder.price.setText(Util.format("Price :") + " $ " + blockInfo.getPrice() + " / hr");
         viewHolder.lcoation_Name.setTag(position);
 
 
