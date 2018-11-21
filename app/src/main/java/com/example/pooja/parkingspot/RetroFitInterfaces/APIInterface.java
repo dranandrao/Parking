@@ -4,6 +4,7 @@ package com.example.pooja.parkingspot.RetroFitInterfaces;
 import com.example.pooja.parkingspot.modles.BlockInfo;
 import com.example.pooja.parkingspot.modles.ParkingData;
 import com.example.pooja.parkingspot.modles.SensorInfo;
+import com.example.pooja.parkingspot.modles.UserData;
 
 import java.util.List;
 
@@ -26,4 +27,11 @@ public interface APIInterface {
     @POST("/parkingdata_insert.php")
     @FormUrlEncoded
     Call<Void> addParkingData(@Field("userId") String userId, @Field("blockId") String blockId, @Field("sensorId") String sensorId);
+
+    @POST("/user_auth.php")
+    @FormUrlEncoded
+    Call<UserData> userAuthentication(@Field("username") String username, @Field("password") String password);
+
+    @GET("/get_complete_block_details.php")
+    Call<List<BlockInfo>> getBlocksInfo();
 }

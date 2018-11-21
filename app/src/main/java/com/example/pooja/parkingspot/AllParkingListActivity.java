@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
-import com.example.pooja.parkingspot.RetroFitInterfaces.APIClient;
 import com.example.pooja.parkingspot.RetroFitInterfaces.APIInterface;
 import com.example.pooja.parkingspot.adapters.CustomAdapter;
 import com.example.pooja.parkingspot.modles.BlockInfo;
@@ -27,36 +26,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ParkingListActivity extends AppCompatActivity {
-
+public class AllParkingListActivity extends AppCompatActivity {
     @BindView(R.id.parkingList)
     ListView parkingList;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.container)
     LinearLayout linearLayout;
+    PopupWindow popupWindow;
+
 
     private ArrayList<BlockInfo> arrayList;
     private APIInterface apiInterface;
-    PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_parking);
+        setContentView(R.layout.activity_all_parking_list);
 
         ButterKnife.bind(this);
-        apiInterface = ((MyApplication)this.getApplication()).getApiInterface();
-        toolbar.setTitle("Choose parking");
+        apiInterface = ((MyApplication) this.getApplication()).getApiInterface();
+        toolbar.setTitle("Parking List");
 
-
-        final String blockId = getIntent().getStringExtra("blockId");
-
-        if (String.valueOf(blockId).isEmpty()) {
-            showPopUP();
-        }
-
-        Call<List<BlockInfo>> apiCall = apiInterface.getParkingDetails(blockId);
+        Call<List<BlockInfo>> apiCall = apiInterface.getBlocksInfo();
         apiCall.enqueue(new Callback<List<BlockInfo>>() {
             @Override
             public void onResponse(Call<List<BlockInfo>> call, Response<List<BlockInfo>> response) {
@@ -71,22 +63,22 @@ public class ParkingListActivity extends AppCompatActivity {
             }
         });
 
-
         parkingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 BlockInfo blockInfo = arrayList.get(position);
-                Intent intent = new Intent(getApplicationContext(), BookingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), UpdatePriceActivity.class);
                 intent.putExtra("blockId", blockInfo.getId());//We need only Id,not blockId
-                intent.putExtra("sensorId", blockInfo.getSensorId());
                 intent.putExtra("parkingName", blockInfo.getLocationName());
                 startActivity(intent);
             }
         });
+
+
     }
 
     private void showPopUP() {
-        LayoutInflater layoutInflater = (LayoutInflater) ParkingListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) AllParkingListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View customView = layoutInflater.inflate(R.layout.pop_up_window, null);
         popupWindow = new PopupWindow(customView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         findViewById(R.id.container).post(new Runnable() {
@@ -114,5 +106,4 @@ public class ParkingListActivity extends AppCompatActivity {
         });
 
     }
-
 }

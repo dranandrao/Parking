@@ -10,7 +10,11 @@
     <string name="logout">Logout</string>
     <string name="booking">Book a parking</string>
     <string name="try_again">Try Again</string>
+    <string name="login">Logging in..</string>
     <string name="error">Something went wrong.Please try again..!</string>
+    <string name="user_role">user</string>
+    <string name="admin_role">admin</string>
+    <string name="update">Update</string>
     <string-array name="places">
         <item>Central Mall</item>
         <item>Pheniox Mall</item>
@@ -42,5 +46,10 @@
         <item>7p</item>
         <item>8p</item>
         <item>9p</item>
+    </string-array>
+    <string-array name="prices">
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
     </string-array>
 </resources>

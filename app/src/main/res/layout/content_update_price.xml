@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/spacing_5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/spacing_2"
+            android:layout_weight="0.3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/parking_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/spacing_5"
+                android:layout_weight="0.7"
+                android:textAppearance="@android:style/TextAppearance.Large" />
+
+            <ImageButton
+                android:id="@+id/parking_date"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/baseline_event_black_18dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/spacing_2"
+            android:layout_weight="2">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_2"
+                android:text="Note :"
+                android:textAppearance="@android:style/TextAppearance.Small" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/spacing_2"
+                android:text="The statistics is based of historical visits."
+                android:textAppearance="@android:style/TextAppearance.Small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/spacing_5"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:layout_margin="@dimen/spacing_10"
+                android:text="New Price :"
+                android:textSize="@dimen/spacing_10"
+                android:textStyle="bold" />
+            <Spinner
+                android:id="@+id/priceSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/update_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/spacing_2"
+                    android:layout_weight="1"
+                    android:background="@color/blue"
+                    android:text="@string/update"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/spacing_20" />
+
+                <Button
+                    android:id="@+id/cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_margin="@dimen/spacing_2"
+                    android:layout_weight="1"
+                    android:background="@color/blue"
+                    android:text="@string/cancle"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/spacing_20" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
