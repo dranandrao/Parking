@@ -172,11 +172,13 @@ public class BookingActivity extends AppCompatActivity implements OnChartValueSe
         barEntries.add(new BarEntry(3f, 20f));
         barEntries.add(new BarEntry(4f, 30f));
         barEntries.add(new BarEntry(5f, 10f));
-        barEntries.add(new BarEntry(6f, 7f));
+        barEntries.add(new BarEntry(6f, 15f));
         barEntries.add(new BarEntry(7f, 6f));
         barEntries.add(new BarEntry(8f, 8f));
         barEntries.add(new BarEntry(9f, 4f));
-        barEntries.add(new BarEntry(10f, 1f));
+        barEntries.add(new BarEntry(10f, 2f));
+        barEntries.add(new BarEntry(11f, 3f));
+        barEntries.add(new BarEntry(12f, 3f));
 
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Price");
