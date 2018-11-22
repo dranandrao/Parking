@@ -73,6 +73,8 @@ public class AllParkingListActivity extends AppCompatActivity {
                         return true;
                     case R.id.logout:
                         selectedMenuItemId = R.id.logout;
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
                         finishAffinity();
                         return true;
                 }

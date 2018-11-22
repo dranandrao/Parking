@@ -128,6 +128,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         return true;
                     case R.id.logout:
                         selectedMenuItemId = R.id.logout;
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
                         finishAffinity();
                         return true;
                 }

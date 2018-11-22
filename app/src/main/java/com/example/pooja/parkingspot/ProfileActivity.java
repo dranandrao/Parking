@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         ButterKnife.bind(this);
+        toolbar.setTitle("Profile");
         UserData userData = ((MyApplication) this.getApplication()).getUserData();
 
         username.setText(userData.getUsername());
