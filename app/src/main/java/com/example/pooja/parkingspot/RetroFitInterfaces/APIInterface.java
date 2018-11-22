@@ -38,4 +38,5 @@ public interface APIInterface {
     @POST("/update_price.php")
     @FormUrlEncoded
     Call<Void> updateParkingPrice(@Field("id")String blockId,@Field("price") String price);
+
 }

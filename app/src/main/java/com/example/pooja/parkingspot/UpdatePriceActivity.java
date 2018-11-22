@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -140,6 +141,7 @@ public class UpdatePriceActivity extends AppCompatActivity implements DatePicker
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.isSuccessful()){
+                            Log.v(TAG,"OnResponse call");
                             Toast.makeText(getApplicationContext(),getResources().getText(R.string.price_updated),Toast.LENGTH_LONG).show();
                             finish();
                         }
@@ -147,7 +149,9 @@ public class UpdatePriceActivity extends AppCompatActivity implements DatePicker
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        Log.v(TAG,"OnFailure call");
+                        call.cancel();
+                        t.printStackTrace();
                     }
                 });
 

@@ -1,11 +1,16 @@
 package com.example.pooja.parkingspot;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,6 +40,11 @@ public class AllParkingListActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     PopupWindow popupWindow;
 
+    @BindView(R.id.navigation_view)
+    NavigationView navigationView;
+    @BindView(R.id.drawer)
+    DrawerLayout drawerLayout;
+    private int selectedMenuItemId;
 
     private ArrayList<BlockInfo> arrayList;
     private APIInterface apiInterface;
@@ -48,20 +58,44 @@ public class AllParkingListActivity extends AppCompatActivity {
         apiInterface = ((MyApplication) this.getApplication()).getApiInterface();
         toolbar.setTitle("Parking List");
 
-        Call<List<BlockInfo>> apiCall = apiInterface.getBlocksInfo();
-        apiCall.enqueue(new Callback<List<BlockInfo>>() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onResponse(Call<List<BlockInfo>> call, Response<List<BlockInfo>> response) {
-                arrayList = (ArrayList<BlockInfo>) response.body();
-                CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), R.layout.parking_info, arrayList);
-                parkingList.setAdapter(customAdapter);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                menuItem.setChecked(true);
+                int mPos = menuItem.getItemId();
+                switch (mPos) {
+                    case R.id.home:
+                        selectedMenuItemId = R.id.home;
+                        return true;
+                    case R.id.my_profile:
+                        selectedMenuItemId = R.id.my_profile;
+                        startActivity(new Intent(AllParkingListActivity.this, ProfileActivity.class));
+                        return true;
+                    case R.id.logout:
+                        selectedMenuItemId = R.id.logout;
+                        finishAffinity();
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, 0, 0) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
             }
 
             @Override
-            public void onFailure(Call<List<BlockInfo>> call, Throwable t) {
-                showPopUP();
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
             }
-        });
+        };
+
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        getDataFromServer();
 
         parkingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -104,6 +138,30 @@ public class AllParkingListActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+    private void getDataFromServer() {
+        Call<List<BlockInfo>> apiCall = apiInterface.getBlocksInfo();
+        apiCall.enqueue(new Callback<List<BlockInfo>>() {
+            @Override
+            public void onResponse(Call<List<BlockInfo>> call, Response<List<BlockInfo>> response) {
+                arrayList = (ArrayList<BlockInfo>) response.body();
+                CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), R.layout.parking_info, arrayList);
+                parkingList.setAdapter(customAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<BlockInfo>> call, Throwable t) {
+                showPopUP();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (apiInterface != null) {
+            getDataFromServer();
+        }
     }
 }

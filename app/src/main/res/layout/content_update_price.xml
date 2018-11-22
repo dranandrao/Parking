@@ -81,8 +81,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Price :"
-                android:textSize="@dimen/spacing_10"
-                android:textStyle="bold" />
+                android:textSize="@dimen/spacing_15"
+                android:textStyle="bold"
+                android:textAppearance="@android:style/TextAppearance.Large"/>
             <Spinner
                 android:id="@+id/priceSpinner"
                 android:layout_width="match_parent"
