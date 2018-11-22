@@ -36,8 +36,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class UpdatePriceActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, OnChartValueSelectedListener {
+public class UpdatePriceActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     @BindView(R.id.barchart)
     BarChart barChart;
     @BindView(R.id.update_button)
@@ -85,7 +88,6 @@ public class UpdatePriceActivity extends AppCompatActivity implements DatePicker
 
         //getting data from the extras.
         final String blockId = getIntent().getStringExtra("blockId");
-        final String sensorId = getIntent().getStringExtra("sensorId");
 
         BarData barData = getBarData();
         barChart.setData(barData);
@@ -134,7 +136,21 @@ public class UpdatePriceActivity extends AppCompatActivity implements DatePicker
             @Override
             public void onClick(View v) {
                 String price = (String) priceSpinner.getSelectedItem();
-                Toast.makeText(UpdatePriceActivity.this,price + "Selected ",Toast.LENGTH_LONG).show();
+                apiInterface.updateParkingPrice(blockId, price).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),getResources().getText(R.string.price_updated),Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                });
+
             }
         });
 
@@ -169,16 +185,6 @@ public class UpdatePriceActivity extends AppCompatActivity implements DatePicker
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-    }
-
-    @Override
-    public void onValueSelected(Entry e, Highlight h) {
-
-    }
-
-    @Override
-    public void onNothingSelected() {
 
     }
 

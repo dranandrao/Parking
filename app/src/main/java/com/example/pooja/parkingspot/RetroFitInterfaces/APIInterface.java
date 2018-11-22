@@ -34,4 +34,8 @@ public interface APIInterface {
 
     @GET("/get_complete_block_details.php")
     Call<List<BlockInfo>> getBlocksInfo();
+
+    @POST("/update_price.php")
+    @FormUrlEncoded
+    Call<Void> updateParkingPrice(@Field("id")String blockId,@Field("price") String price);
 }
