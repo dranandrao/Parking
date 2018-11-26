@@ -68,7 +68,7 @@ public class UpdatePriceActivity extends AppCompatActivity implements DatePicker
         setContentView(R.layout.activity_update_price);
 
         ButterKnife.bind(this);
-        toolbar.setTitle("Book Parking");
+        toolbar.setTitle("Update Price");
         apiInterface = ((MyApplication) this.getApplication()).getApiInterface();
 
         String[] labels = getResources().getStringArray(R.array.labels);

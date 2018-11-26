@@ -10,4 +10,5 @@
     <color name="white">#ffffff</color>
     <color name="blue">#044ea9</color>
     <color name="graphColor">#FF71ADF7</color>
+    <color name="carTint">#FFEA452C</color>
 </resources>

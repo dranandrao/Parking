@@ -7,36 +7,69 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <EditText
-            android:id="@+id/et_login"
-            style="@style/CommonEditTextStyle"
-            android:layout_marginTop="@dimen/spacing_10"
-            android:gravity="center"
-            android:hint="@string/username"
-            android:inputType="textEmailAddress"
-            android:singleLine="true"/>
 
-        <EditText
-            android:id="@+id/et_password"
-            style="@style/CommonEditTextStyle"
-            android:layout_marginTop="@dimen/spacing_20"
-            android:gravity="center"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:singleLine="true"/>
-
-        <Button
-            android:id="@+id/btn_login"
-            style="@style/CommonButtonStyle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/blue"
-            android:text="@string/Login"
-            android:textSize="@dimen/spacing_16"/>
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textSize="@dimen/spacing_30"
+                android:textColor="@color/blue"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:src="@drawable/baseline_directions_car_black_48dp"
+                android:tint="@color/carTint"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_login"
+                style="@style/CommonEditTextStyle"
+                android:layout_marginTop="@dimen/spacing_10"
+                android:gravity="center"
+                android:hint="@string/username"
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/et_password"
+                style="@style/CommonEditTextStyle"
+                android:layout_marginTop="@dimen/spacing_20"
+                android:gravity="center"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/CommonButtonStyle"
+                android:layout_width="match_parent"
+                android:background="@color/blue"
+                android:text="@string/Login"
+                android:textSize="@dimen/spacing_16" />
+        </LinearLayout>
+
     </LinearLayout>
 
 
